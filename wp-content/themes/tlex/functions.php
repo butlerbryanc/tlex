@@ -7,115 +7,6 @@
  * @package TLEX
  */
 
-if ( ! function_exists( 'tlex_setup' ) ) :
-	/**
-	 * Sets up theme defaults and registers support for various WordPress features.
-	 *
-	 * Note that this function is hooked into the after_setup_theme hook, which
-	 * runs before the init hook. The init hook is too late for some features, such
-	 * as indicating support for post thumbnails.
-	 */
-	function tlex_setup() {
-		/*
-		 * Make theme available for translation.
-		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on TLEX, use a find and replace
-		 * to change 'tlex' to the name of your theme in all the template files.
-		 */
-		load_theme_textdomain( 'tlex', get_template_directory() . '/languages' );
-
-		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
-
-		/*
-		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
-		add_theme_support( 'title-tag' );
-
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		 */
-		add_theme_support( 'post-thumbnails' );
-
-		// This theme uses wp_nav_menu() in one location.
-		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'tlex' ),
-		) );
-
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
-		add_theme_support( 'html5', array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-		) );
-
-		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'tlex_custom_background_args', array(
-			'default-color' => 'ffffff',
-			'default-image' => '',
-		) ) );
-
-		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
-
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support( 'custom-logo', array(
-			'height'      => 250,
-			'width'       => 250,
-			'flex-width'  => true,
-			'flex-height' => true,
-		) );
-	}
-endif;
-add_action( 'after_setup_theme', 'tlex_setup' );
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function tlex_content_width() {
-	// This variable is intended to be overruled from themes.
-	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'tlex_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'tlex_content_width', 0 );
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function tlex_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'tlex' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'tlex' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
-}
-add_action( 'widgets_init', 'tlex_widgets_init' );
-
 /**
  * Enqueue scripts and styles.
  */
@@ -158,4 +49,56 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+/**
+ * Remove Admin Menu Buttons
+ */
+function remove_menus(){
+  
+//   remove_menu_page( 'index.php' );                  //Dashboard
+//   remove_menu_page( 'jetpack' );                    //Jetpack* 
+//   remove_menu_page( 'edit.php' );                   //Posts
+//   remove_menu_page( 'upload.php' );                 //Media
+//   remove_menu_page( 'edit.php?post_type=page' );    //Pages
+//   remove_menu_page( 'edit-comments.php' );          //Comments
+  remove_menu_page( 'themes.php' );                 //Appearance
+//   remove_menu_page( 'plugins.php' );                //Plugins
+//   remove_menu_page( 'users.php' );                  //Users
+//   remove_menu_page( 'tools.php' );                  //Tools
+//   remove_menu_page( 'options-general.php' );        //Settings
+  
+}
+add_action( 'admin_menu', 'remove_menus' );
+
+/**
+ * Rename Default Posts
+ */
+function tlex_change_post_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'Tribes';
+    $submenu['edit.php'][5][0] = 'Tribes';
+    $submenu['edit.php'][10][0] = 'Add Tribes';
+    $submenu['edit.php'][16][0] = 'Tribes Tags';
+}
+function tlex_change_post_object() {
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Tribes';
+    $labels->singular_name = 'Tribe';
+    $labels->add_new = 'Add Tribe';
+    $labels->add_new_item = 'Add Tribe';
+    $labels->edit_item = 'Edit Tribe';
+    $labels->new_item = 'Tribe';
+    $labels->view_item = 'View Tribe';
+    $labels->search_items = 'Search Tribes';
+    $labels->not_found = 'No Tribes found';
+    $labels->not_found_in_trash = 'No Tribes found in Trash';
+    $labels->all_items = 'All Tribes';
+    $labels->menu_name = 'Tribes';
+    $labels->name_admin_bar = 'Tribes';
+}
+ 
+add_action( 'admin_menu', 'tlex_change_post_label' );
+add_action( 'init', 'tlex_change_post_object' );
 
