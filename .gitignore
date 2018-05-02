@@ -17,3 +17,4 @@ wp-content/plugins/hello.php
 /sitemap.xml.gz
 
 wp-content/themes/tlex/node_modules
+wp-content/themes/tlex/static-html
