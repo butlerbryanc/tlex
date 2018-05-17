@@ -1,0 +1,37 @@
+body {
+    font-family: $font-primary;
+    font-size: $font-base-size;
+    color: $color-text;
+    letter-spacing: 0.08em;
+}
+
+h1, h2, h3 {
+    font-family: $font-heading;
+    font-weight: 600;
+}
+
+h4, h5, h6 {
+    font-family: $font-heading;
+    font-weight: 200;
+}
+
+p {
+    font-family: $font-primary;
+    font-size: $font-base-size;
+    letter-spacing: 0.04em;
+}
+
+a {
+    color: $color-primary;
+    font-weight: 600;
+
+    &:hover {
+        color: lighten($color-primary, 7.5%);
+    }
+}
+
+@each $color, $value in $theme-colors {
+    .#{$color} {
+      color: $value;
+    }
+}

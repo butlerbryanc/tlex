@@ -22,37 +22,43 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'tlex' ); ?></a>
-
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$tlex_description = get_bloginfo( 'description', 'display' );
-			if ( $tlex_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $tlex_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+		<nav class="navbar navbar-expand-md">
+			<div class="container">
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'tlex' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
+				<div class="tlex-table">
+					<div class="tlex-table-cell">
+
+						<div class="navbar-brand">
+							<a href="<?php echo get_home_url(); ?>" class="navbar-logo"><img src="http://placehold.it/80/80" alt="TLEX"></a>
+							<a class="navbar-caption" href="<?php echo get_home_url(); ?>">TLEX</a>
+						</div>
+
+					</div>
+					<div class="tlex-table-cell">
+
+						<button class="navbar-toggler float-right d-md-none" type="button" data-toggle="collapse" data-target="#primary-menu">
+							<div class="hamburger-icon"></div>
+						</button>
+
+						<?php
+							wp_nav_menu( array(
+								'container'		 => false,
+								'theme_location' => 'menu-1',
+								'menu_id'        => 'primary-menu',
+								'menu_class'	 => 'navbar-collapse collapse float-right nav navbar-toggleable-sm',
+								'walker'		 => new Tlex_Nav_Walker
+							));
+							?>
+						<button class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#primary-menu">
+							<div class="close-icon"></div>
+						</button>
+
+					</div>
+				</div>
+
+			</div>
+		</nav>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

@@ -1,0 +1,51 @@
+.related-links {
+    h3 {
+        font-size: 1.3rem;
+        border-bottom: 3px solid $color-text;
+        margin-bottom: 0;
+
+        a {
+            text-decoration: none !important;
+        }
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        border-bottom: 1px solid $color-text;
+
+        a {
+            display: block;
+            padding: 0.667rem;
+        }
+
+        &:nth-child(odd) {
+            a {
+                background-color: transparent;
+            }
+
+            &:hover {
+                background-color: rgba($color-primary, 0.15);
+            }
+        }
+
+        &:nth-child(even) {
+            a {
+                background-color: rgba($color-text, 0.03);
+            }
+
+            &:hover {
+                background-color: rgba($color-primary, 0.15);
+
+                a {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+
+}

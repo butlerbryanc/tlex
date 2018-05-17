@@ -1,0 +1,29 @@
+.btn {
+  @include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, 0);
+}
+
+.btn-light {
+  color: $color-tertiary;
+
+  &:hover {
+    background-color: $color-tertiary;
+    color: #ffffff;
+  }
+}
+  
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+  
+  
+  
+
+  

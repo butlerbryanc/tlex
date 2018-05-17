@@ -1,0 +1,134 @@
+$color-primary: #3DB3A8 !default;
+$color-secondary: #B3836D !default;
+$color-tertiary: #536765 !default;
+$color-text: #212529 !default;
+
+$theme-colors: (
+  "primary":    $color-primary,
+  "secondary":  $color-secondary,
+  "tertiary":   $color-tertiary,
+  "dark":       $color-text,
+  "light":    #ffffff
+);
+
+// Fonts
+
+/* Merriweather Regular */
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./assets/fonts/Merriweather/Merriweather-Regular.eot');
+    src: url('./assets/fonts/Merriweather/Merriweather-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Merriweather/Merriweather-Regular.woff2') format('woff2'),
+        url('./assets/fonts/Merriweather/Merriweather-Regular.woff') format('woff'),
+        url('./assets/fonts/Merriweather/Merriweather-Regular.ttf') format('truetype'),
+        url('./assets/fonts/Merriweather/Merriweather-Regular.svg#Merriweather-Regular') format('svg');
+}
+
+/* Merriweather Regular Italic */
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./assets/fonts/Merriweather/Merriweather-Italic.eot');
+    src: url('./assets/fonts/Merriweather/Merriweather-Italic.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Merriweather/Merriweather-Italic.woff2') format('woff2'),
+        url('./assets/fonts/Merriweather/Merriweather-Italic.woff') format('woff'),
+        url('./assets/fonts/Merriweather/Merriweather-Italic.ttf') format('truetype'),
+        url('./assets/fonts/Merriweather/Merriweather-Italic.svg#Merriweather-Italic') format('svg');
+    font-style: italic;
+}
+
+/* Merriweather Bold */
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./assets/fonts/Merriweather/Merriweather-Bold.eot');
+    src: url('./assets/fonts/Merriweather/Merriweather-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Merriweather/Merriweather-Bold.woff2') format('woff2'),
+        url('./assets/fonts/Merriweather/Merriweather-Bold.woff') format('woff'),
+        url('./assets/fonts/Merriweather/Merriweather-Bold.ttf') format('truetype'),
+        url('./assets/fonts/Merriweather/Merriweather-Bold.svg#Merriweather-Bold') format('svg');
+    font-weight: 600;
+}
+
+/* Merriweather Bold Italic */
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./assets/fonts/Merriweather/Merriweather-BoldItalic.eot');
+    src: url('./assets/fonts/Merriweather/Merriweather-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Merriweather/Merriweather-BoldItalic.woff2') format('woff2'),
+        url('./assets/fonts/Merriweather/Merriweather-BoldItalic.woff') format('woff'),
+        url('./assets/fonts/Merriweather/Merriweather-BoldItalic.ttf') format('truetype'),
+        url('./assets/fonts/Merriweather/Merriweather-BoldItalic.svg#Merriweather-BoldItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Merriweather Black */
+@font-face {
+    font-family: 'Merriweather';
+    src: url('./assets/fonts/Merriweather/Merriweather-Black.eot');
+    src: url('./assets/fonts/Merriweather/Merriweather-Black.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Merriweather/Merriweather-Black.woff2') format('woff2'),
+        url('./assets/fonts/Merriweather/Merriweather-Black.woff') format('woff'),
+        url('./assets/fonts/Merriweather/Merriweather-Black.ttf') format('truetype'),
+        url('./assets/fonts/Merriweather/Merriweather-Black.svg#Merriweather-Black') format('svg');
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Montserrat Regular */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat/Montserrat-Regular.eot');
+    src: url('./assets/fonts/Montserrat/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Montserrat/Montserrat-Regular.woff2') format('woff2'),
+        url('./assets/fonts/Montserrat/Montserrat-Regular.woff') format('woff'),
+        url('./assets/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype'),
+        url('./assets/fonts/Montserrat/Montserrat-Regular.svg#Montserrat-Regular') format('svg');
+    font-weight: 400;
+}
+
+/* Montserrat ExtraLight */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat/Montserrat-ExtraLight.eot');
+    src: url('./assets/fonts/Montserrat/Montserrat-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Montserrat/Montserrat-ExtraLight.woff2') format('woff2'),
+        url('./assets/fonts/Montserrat/Montserrat-ExtraLight.woff') format('woff'),
+        url('./assets/fonts/Montserrat/Montserrat-ExtraLight.ttf') format('truetype'),
+        url('./assets/fonts/Montserrat/Montserrat-ExtraLight.svg#Montserrat-ExtraLight') format('svg');
+    font-weight: 200;
+}
+
+/* Montserrat Bold */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat/Montserrat-Bold.eot');
+    src: url('./assets/fonts/Montserrat/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Montserrat/Montserrat-Bold.woff2') format('woff2'),
+        url('./assets/fonts/Montserrat/Montserrat-Bold.woff') format('woff'),
+        url('./assets/fonts/Montserrat/Montserrat-Bold.ttf') format('truetype'),
+        url('./assets/fonts/Montserrat/Montserrat-Bold.svg#Montserrat-Bold') format('svg');
+    font-weight: 600;
+}
+
+/* Montserrat Black */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('./assets/fonts/Montserrat/Montserrat-Black.eot');
+    src: url('./assets/fonts/Montserrat/Montserrat-Black.eot?#iefix') format('embedded-opentype'),
+        url('./assets/fonts/Montserrat/Montserrat-Black.woff2') format('woff2'),
+        url('./assets/fonts/Montserrat/Montserrat-Black.woff') format('woff'),
+        url('./assets/fonts/Montserrat/Montserrat-Black.ttf') format('truetype'),
+        url('./assets/fonts/Montserrat/Montserrat-Black.svg#Montserrat-Black') format('svg');
+    font-weight: 800;
+}
+
+
+
+
+
+$font-base-size: 16px !default;
+$font-primary: 'Merriweather', serif;
+$font-heading: 'Montserrat', sans-serif;
+
+// Miscellaneous
+$image-path: './assets/images';

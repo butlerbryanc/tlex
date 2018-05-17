@@ -19,22 +19,26 @@ get_header();
 		<main id="main" class="site-main">
 
 		<?php
-		while ( have_posts() ) :
-			the_post();
+		if ( have_rows('sections') ) {
+			$section_id = 0;
+			while ( have_rows('sections') ) { 
+				the_row();
+				set_query_var( 'section_id', $section_id );
+				
+				$layout = get_row_layout();
+			
+				echo '<section id="content-section-' . $section_id . '">';
+				get_template_part( 'template-parts/' . $layout ); 
+				echo '</section>';
 
-			get_template_part( 'template-parts/content', 'page' );
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-		endwhile; // End of the loop.
+			  $section_id++;
+			}
+		  }
 		?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
-get_sidebar();
+// get_sidebar();
 get_footer();

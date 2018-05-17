@@ -3,7 +3,7 @@
  * Plugin Name: WP-SCSS
  * Plugin URI: https://github.com/ConnectThink/WP-SCSS
  * Description: Compiles scss files live on WordPress.
- * Version: 1.2.3
+ * Version: 1.2.4
  * Author: Connect Think
  * Author URI: http://connectthink.com
  * License: GPLv3
@@ -46,7 +46,7 @@ if (!defined('WPSCSS_VERSION_KEY'))
     define('WPSCSS_VERSION_KEY', 'wpscss_version');
 
 if (!defined('WPSCSS_VERSION_NUM'))
-    define('WPSCSS_VERSION_NUM', '1.2.3');
+    define('WPSCSS_VERSION_NUM', '1.2.4');
 
 // Add version to options table
 if ( get_option( WPSCSS_VERSION_KEY ) !== false ) {
@@ -113,8 +113,8 @@ function wpscss_plugin_action_links($links, $file) {
  */
 
 $wpscss_options = get_option( 'wpscss_options' );
-$scss_dir_setting = $wpscss_options['scss_dir'];
-$css_dir_setting = $wpscss_options['css_dir'];
+$scss_dir_setting = isset($wpscss_options['scss_dir']) ? $wpscss_options['scss_dir'] : '';
+$css_dir_setting = isset($wpscss_options['css_dir']) ? $wpscss_options['css_dir'] : '';
 
 // Checks if directories are empty
 if( $scss_dir_setting == false || $css_dir_setting == false ) {
@@ -139,11 +139,12 @@ if( $scss_dir_setting == false || $css_dir_setting == false ) {
 
 // Plugin Settings
 $wpscss_settings = array(
-  'scss_dir'  =>  WPSCSS_THEME_DIR . $scss_dir_setting,
-  'css_dir'   =>  WPSCSS_THEME_DIR . $css_dir_setting,
-  'compiling' =>  $wpscss_options['compiling_options'],
-  'errors'    =>  $wpscss_options['errors'],
-  'enqueue'   =>  isset($wpscss_options['enqueue']) ? $wpscss_options['enqueue'] : 0
+  'scss_dir'   =>  WPSCSS_THEME_DIR . $scss_dir_setting,
+  'css_dir'    =>  WPSCSS_THEME_DIR . $css_dir_setting,
+  'compiling'  =>  isset($wpscss_options['compiling_options']) ? $wpscss_options['compiling_options'] : 'Leafo\ScssPhp\Formatter\Expanded',
+  'errors'     =>  isset($wpscss_options['errors']) ? $wpscss_options['errors'] : 'show',
+  'sourcemaps' =>  isset($wpscss_options['sourcemap_options']) ? $wpscss_options['sourcemap_options'] : 'SOURCE_MAP_NONE',
+  'enqueue'    =>  isset($wpscss_options['enqueue']) ? $wpscss_options['enqueue'] : 0
 );
 
 
@@ -154,10 +155,12 @@ $wpscss_settings = array(
  * If needs_compiling passes, runs compile method
  */
 
+global $wpscss_compiler;
 $wpscss_compiler = new Wp_Scss(
   $wpscss_settings['scss_dir'],
   $wpscss_settings['css_dir'],
-  $wpscss_settings['compiling']
+  $wpscss_settings['compiling'],
+  $wpscss_settings['sourcemaps']
 );
 
 //wp_scss_needs_compiling() needs to be run as wp_head-action to make it possible

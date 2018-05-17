@@ -1,0 +1,19 @@
+.nav-tabs {
+    border-bottom: 0;
+    li {
+        justify-content: center;
+        border-bottom: 2px solid darken($color-primary, 15%);
+    }
+
+    a {
+        border: 0px;
+
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+}
+
+.tab-content {
+    background-color: rgba($color-primary, 0.3);
+}

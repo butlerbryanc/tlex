@@ -1,0 +1,43 @@
+.container {
+    @include media-breakpoint-up(sm) {
+        max-width: 100%;
+    }
+
+    @include media-breakpoint-up(md) {
+        max-width: 100%;
+    }
+
+    @include media-breakpoint-up(lg) {
+        max-width: 960px;
+    }
+
+    @include media-breakpoint-up(xl) {
+        max-width: 1140px;
+    }
+}
+#primary {
+    display: block;
+    margin: 0 auto;
+    min-height: 100%;
+    @include clearfix();
+}
+
+#secondary {
+    margin-top: 30px;
+    padding: 15px;
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+        float: left;
+        width: calc(30% - 15px);
+    }
+}
+
+#main {
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+        float: right;
+        width: 70%;
+    }
+}

@@ -1,0 +1,43 @@
+.tlex-table {
+    position: relative;
+    display: table;
+    width: 100%;
+    &-full {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    } 
+}
+
+.tlex-table-cell {
+    position: relative;
+    display: table-cell;
+    float: none;
+    padding-top: 0;
+    padding-bottom: 0;
+    vertical-align: middle; 
+}
+
+.tlex-table-md-up {
+    width: 100%; 
+    .tlex-table-cell {
+        display: block;
+
+        & + .tlex-table-cell {
+            padding-top: 40px;
+        }
+    }
+}
+  
+@media (min-width: 769px) {
+    .tlex-table-md-up {
+        display: table;
+        .tlex-table-cell {
+            display: table-cell;
+    
+            & + .tlex-table-cell {
+                padding-top: 0;
+            }
+        }
+    }
+}
