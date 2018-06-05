@@ -40,21 +40,21 @@ add_action( 'wp_head', 'tlex_pingback_header' );
  * Checks if post has a parent category
  */
 function tlex_has_parent() {
-	$categories = get_the_category();
-	foreach( $categories as $category ):
-		if($category->parent !== 0) {
-			return $category->parent;
+	$taxonomies = get_the_terms($post->ID, 'state');
+	foreach( $taxonomies as $taxonomy ):
+		if($taxonomy->parent !== 0) {
+			return $taxonomy->parent;
 		}
 	endforeach;
 	return false;
 }
 
 function tlex_get_subregion_links($cat) {
-	$output = '<h3><a href="' . get_term_link($cat->term_id) . '">'. $cat->name .'\'s</a> Regions</h3>';
+	$output = '<h2><a href="' . get_term_link($cat->term_id) . '">'. $cat->name .'\'s</a> Regions</h2>';
 
 	$args = array(
 		'parent' => $cat->term_id, 
-		'taxonomy' => 'category',
+		'taxonomy' => 'state',
 		'orderby' => 'title' 
 	);
 	$sidebar_array = get_terms( $args );
@@ -70,14 +70,22 @@ function tlex_get_subregion_links($cat) {
 }
 
 function tlex_get_tribe_links($cat) {
-	$output = '<h3>Tribes in ' . $cat->name .'</h3>';
+	$output = '<h2>Tribes in ' . $cat->name .'</h2>';
 
-	$args = array('category' => $cat->term_id, 'orderby' => 'title');
+	$args = array(
+		'orderby' => 'title',
+		'tax_query' => array(array(
+			'taxonomy' => $cat->taxonomy,
+			'field' => 'slug',
+			'terms' => array($cat->slug),
+			'operator' => 'IN'
+		))
+	);
 	$sidebar_array = get_posts( $args );
 	$output .= '<ul>';
 	foreach($sidebar_array as $item) {
 		$output .= '<li>';
-		$output .= '<a href="' . get_permalink($item->id) . '">';
+		$output .= '<a href="' . get_permalink($item->ID) . '">';
 		$output .= $item->post_title;
 		$output .= '</a></li>';
 	}
@@ -90,9 +98,9 @@ function tlex_tribes_sidebar_nav() {
 	if( $cat ) {
 		$output = tlex_get_subregion_links(get_term($cat));
 	} else {
-		$categories = get_the_category();
-		foreach( $categories as $category ):
-			$output .= tlex_get_tribe_links($category);
+		$taxonomies = get_the_terms($post->ID, 'state');
+		foreach($taxonomies as $taxonomy):
+			$output .= tlex_get_tribe_links($taxonomy);
 		endforeach;
 	}
 	return $output;

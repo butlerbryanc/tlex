@@ -13,10 +13,12 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 ?>
 
 <aside id="secondary" class="widget-area">
-	<div class="related-links">
+	<section class="widget related-links">
 		<?php 
-			// dynamic_sidebar( 'sidebar-1' );
 			echo tlex_tribes_sidebar_nav();
 		?>
-	</div>
+	</section>
+	<?php
+		dynamic_sidebar( 'sidebar-1' );
+	?>
 </aside><!-- #secondary -->

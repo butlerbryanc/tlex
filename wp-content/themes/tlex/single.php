@@ -9,12 +9,8 @@
 
 get_header();
 ?>
-
-	<?php
-		if(get_field('banner')) {
-			get_template_part( 'template-parts/jumbotron'); 	
-		}
-	?>
+	
+	<?php get_template_part( 'template-parts/jumbotron'); ?>
 	
 	<div class="breadcrumb-wrapper">
 		<div class="container">
@@ -29,7 +25,7 @@ get_header();
 		<?php
 		if ( have_rows('resource_sections') ) {
 			$resource_section_id = 0;
-			echo '<div class="container resource-wrapper">';
+			echo '<div class="tlex-card-grid">';
 			echo '<div class="row">';
 			while ( have_rows('resource_sections') ) { 
 				the_row();

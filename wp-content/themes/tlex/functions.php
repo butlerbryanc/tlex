@@ -44,7 +44,8 @@ if ( ! function_exists( 'tlex_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'tlex' ),
+            'primary' => esc_html__( 'Primary', 'tlex' ),
+            'footer' => esc_html__( 'Footer', 'tlex' )
 		) );
 
 		/*
@@ -119,6 +120,17 @@ add_action( 'widgets_init', 'tlex_widgets_init' );
 /**
  * Enqueue scripts and styles.
  */
+
+add_filter( 'script_loader_tag', 'add_attributes_to_script', 10, 3 );
+
+function add_attributes_to_script( $tag, $handle, $src ) {
+    if ( 'fontawesome' === $handle ) {
+        $tag = '<script type="text/javascript" src="' . $src . '" id="fontawesome" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>';
+    }
+
+    return $tag;
+}
+
 function tlex_scripts() {
 
     wp_deregister_script('jquery');
@@ -129,6 +141,7 @@ function tlex_scripts() {
     wp_enqueue_style( 'tether.css', get_template_directory_uri() . '/vendor/tether/tether.min.css');
     wp_enqueue_style( 'tlex-style', get_stylesheet_uri() );
 
+    wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.13/js/all.js', array(), '20151215', true );
     wp_enqueue_script( 'tlex-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
     wp_enqueue_script( 'tether.js', get_template_directory_uri() . '/vendor/tether/tether.min.js', array(), false, true);
     wp_enqueue_script( 'bootstrap.js', get_template_directory_uri() . '/vendor/bootstrap/js/bootstrap.min.1.js', array(), false, true);
@@ -138,6 +151,7 @@ function tlex_scripts() {
     wp_enqueue_script( 'dropdown.js', get_template_directory_uri() . '/vendor/dropdown/js/script.min.js', array(), false, true);
     wp_enqueue_script( 'touchswipe', get_template_directory_uri() . '/vendor/touch-swipe/jquery.touch-swipe.min.js', array(), false, true);
     wp_enqueue_script( 'touchswipe', get_template_directory_uri() . '/vendor/viewport-checker/jquery.viewportchecker.js', array(), false, true);
+    wp_enqueue_script( 'state-search', get_template_directory_uri() . '/js/state-search.js', array(), false, true);
     // wp_enqueue_script( 'mobirise', get_template_directory_uri() . '/vendor/theme/js/script.js', array(), false, true);
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -184,6 +198,18 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 /**
+ * Theme Default Post Overrides
+ */
+require get_template_directory() . '/inc/cpt/default/tlex-default-post.php';
+
+/**
+ * Register Theme Taxonomies
+ */
+require get_template_directory() . '/inc/cpt/taxonomies/state.php';
+
+
+
+/**
  * Remove Admin Menu Buttons
  */
 function remove_menus(){ 
@@ -200,43 +226,6 @@ function remove_menus(){
 //   remove_menu_page( 'options-general.php' );        //Settings
 }
 add_action( 'admin_menu', 'remove_menus' );
-
-/**
- * Rename Default Posts
- */
-function tlex_change_post_label() {
-    global $menu;
-    global $submenu;
-    $menu[5][0] = 'Tribes';
-    $submenu['edit.php'][5][0] = 'Tribes';
-    $submenu['edit.php'][10][0] = 'Add Tribes';
-    $submenu['edit.php'][16][0] = 'Tribes Tags';
-}
-
-function tlex_change_post_object() {
-    global $wp_post_types;
-    $labels = &$wp_post_types['post']->labels;
-    $labels->name = 'Tribes';
-    $labels->singular_name = 'Tribe';
-    $labels->add_new = 'Add Tribe';
-    $labels->add_new_item = 'Add Tribe';
-    $labels->edit_item = 'Edit Tribe';
-    $labels->new_item = 'Tribe';
-    $labels->view_item = 'View Tribe';
-    $labels->search_items = 'Search Tribes';
-    $labels->not_found = 'No Tribes found';
-    $labels->not_found_in_trash = 'No Tribes found in Trash';
-    $labels->all_items = 'All Tribes';
-    $labels->menu_name = 'Tribes';
-    $labels->name_admin_bar = 'Tribes';
-}
-add_action( 'admin_menu', 'tlex_change_post_label' );
-add_action( 'init', 'tlex_change_post_object' );
-
-function tlex_unregister_tags() {
-    unregister_taxonomy_for_object_type('post_tag', 'post');
-}
-add_action('init', 'tlex_unregister_tags');
 
 /**
  * Custom Main Menu Walker for Bootstrap Navigation
@@ -350,7 +339,7 @@ class Tlex_Nav_Walker extends Walker_Nav_Menu {
             $manual_class = array_values($classes)[0] .' '. 'dropdown-item';
             $atts ['class']= $manual_class;
         }
-        if (in_array('current-menu-item', $item->classes)) {
+        if (in_array( 'current-menu-item', array($item->classes) ) ) {
             $atts['class'] .= ' active';
         }
         // print_r($item);
@@ -430,5 +419,47 @@ class Tlex_Nav_Walker extends Walker_Nav_Menu {
         if ($depth === 0) {
             $output .= "</li>\n";
         }
+    }
+}
+
+/**
+ * ADD ACF Options Pages
+ */
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Theme Header Settings',
+		'menu_title'	=> 'Header',
+		'parent_slug'	=> 'theme-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Theme Footer Settings',
+		'menu_title'	=> 'Footer',
+		'parent_slug'	=> 'theme-settings',
+	));
+	
+}
+
+
+/**
+ * ADD ACF Options Pages
+ */
+
+function tlex_get_main_logo() {
+    $logo = get_field('main_logo', 'options');
+    if( $logo ) {
+        return "<img src=\"". $logo['url'] . "\" alt=\"" . $logo['title'] ."\" />";
+    } else {
+        return 'No Logo Set';
     }
 }

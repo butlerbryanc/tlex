@@ -1,0 +1,95 @@
+.tlex-card-grid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    @include media-breakpoint-up(sm) {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    div[class^="col"] {
+        margin-bottom: 30px;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        border-bottom: 3px solid $color-text;
+        text-transform: uppercase;
+    }
+
+    h5 {
+        font-size: 1rem;
+    }
+
+    .w-100 {
+        margin: 0;
+    }
+}
+
+.tlex-card {
+    background-color: #fff;
+    background-size: 100%;
+    background-position: center center;
+    border-radius: 3px;
+    box-shadow: 0px 8px 15px rgba(75, 72, 72, 0.4);
+    height: 100%;
+    position: relative;
+    transition: background-size 0.4s ease-in-out, background-position 0.4s ease-in-out;
+
+    .single & {
+        padding: 15px;
+    }
+    
+    .archive & {
+        min-height: 350px;
+    }
+
+    ul {
+        padding-left: 1.1rem;
+    }
+
+    header {
+        background: linear-gradient(90deg, rgba($color-primary, 0.6) 0%, rgba($color-tertiary, 0.7) 100%, rgba($color-tertiary, 0.9) 100%);
+        padding: 15px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+
+        h2 {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: 400;
+            width: 100%;
+
+            a {
+                font-weight: 400;
+                letter-spacing: 0.08em;
+            }
+        }
+
+        h5 {
+            display: inline;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+
+            a {
+                font-weight: 600;
+                letter-spacing: 0.04em;
+            }
+
+            &:not(:last-child):after {
+                color: #fff;
+                content: " \2022   ";
+            }
+        }
+
+        a {
+            color: #fff;
+        }
+    }
+
+    &:hover {
+        background-position: center 55%;
+        background-size: 110%;
+    }
+}

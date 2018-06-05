@@ -5,8 +5,8 @@ if($resource_section_id > 0 && $resource_section_id % 2 == 0) {
 }
 ?>
 
-<div class="col">
-    <div class="resource-list">
+<div class="col-lg-6">
+    <div class="tlex-card">
         <h3><?php the_sub_field('resource_headline'); ?></h3>
         <?php 
         if ( have_rows('resource_list') ) {

@@ -1,4 +1,22 @@
+section {
+    background-color: #ffffff;
+}
+
+#content {
+    background-color: #ffffff;
+    overflow: auto;
+
+    .single &, .archive & {
+        background: lighten($color-secondary, 50%); /* Old browsers */
+        background: -moz-linear-gradient(top, lighten($color-secondary, 60%) 0%, lighten($color-secondary, 42%) 46%, lighten($color-secondary, 20%) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, lighten($color-secondary, 60%) 0%,lighten($color-secondary, 42%) 46%,lighten($color-secondary, 20%) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, lighten($color-secondary, 60%) 0%,lighten($color-secondary, 42%) 46%, lighten($color-secondary, 20%) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+}
+
 .container {
+    position: relative;
+
     @include media-breakpoint-up(sm) {
         max-width: 100%;
     }
@@ -15,6 +33,7 @@
         max-width: 1140px;
     }
 }
+
 #primary {
     display: block;
     margin: 0 auto;
@@ -23,21 +42,24 @@
 }
 
 #secondary {
-    margin-top: 30px;
-    padding: 15px;
-    width: 100%;
+    .single & {
+        margin: 30px 0;
+        width: 100%;
 
-    @include media-breakpoint-up(md) {
-        float: left;
-        width: calc(30% - 15px);
+        @include media-breakpoint-up(md) {
+            float: left;
+            width: calc(30% - 30px);
+        }
     }
 }
 
-#main {
-    width: 100%;
+ #main {
+    .single & {
+        width: 100%;
 
-    @include media-breakpoint-up(md) {
-        float: right;
-        width: 70%;
+        @include media-breakpoint-up(md) {
+            float: right;
+            width: 70%;
+        }
     }
 }

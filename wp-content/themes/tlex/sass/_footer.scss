@@ -1,0 +1,48 @@
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #ffffff;
+    overflow: hidden;
+
+    ul.list-unstyled li {
+        margin-bottom: 0.5em;
+    }
+
+    .navbar-logo {
+        display: none;
+    }
+
+    .container {
+        padding: 1rem 0;
+    }
+
+    hr {
+        border: 1px solid rgba(white, 0.2);
+    }
+
+    @include media-breakpoint-up(md) {
+        .navbar-logo {
+            display: block;
+        }
+
+        .container {
+            padding: 2.25rem 0;
+        }
+    }
+}
+
+.footer-copyright {
+    font-size: 0.8rem;
+    margin-bottom: 0.5em;
+}
+
+#footer-bg {
+    bottom: 0;
+    position: fixed;
+    width: auto;
+    z-index: -1;
+    
+    @include media-breakpoint-up(md) {
+        width: 100%;
+        height: auto;
+    }
+}

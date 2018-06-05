@@ -30,7 +30,11 @@
 					<div class="tlex-table-cell">
 
 						<div class="navbar-brand">
-							<a href="<?php echo get_home_url(); ?>" class="navbar-logo"><img src="http://placehold.it/80/80" alt="TLEX"></a>
+							<a href="<?php echo get_home_url(); ?>" class="navbar-logo">
+								<?php  
+									echo tlex_get_main_logo();
+								?>
+							</a>
 							<a class="navbar-caption" href="<?php echo get_home_url(); ?>">TLEX</a>
 						</div>
 
@@ -44,7 +48,7 @@
 						<?php
 							wp_nav_menu( array(
 								'container'		 => false,
-								'theme_location' => 'menu-1',
+								'theme_location' => 'primary',
 								'menu_id'        => 'primary-menu',
 								'menu_class'	 => 'navbar-collapse collapse float-right nav navbar-toggleable-sm',
 								'walker'		 => new Tlex_Nav_Walker
