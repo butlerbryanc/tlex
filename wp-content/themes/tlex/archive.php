@@ -9,18 +9,34 @@
 
 get_header();
 ?>
+	<?php get_template_part( 'template-parts/jumbotron'); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-		<?php get_template_part( 'template-parts/jumbotron'); ?>
-
-		<div class="breadcrumb-wrapper">
-			<div class="container">
-				<?php the_breadcrumb(); ?>
-			</div>
+	<div class="breadcrumb-wrapper">
+		<div class="container">
+			<?php the_breadcrumb(); ?>
 		</div>
+	</div>
 
-		<div class="container tlex-card-grid">
+	<div id="primary" class="container content-area">
+		<main id="main" class="site-main">
+		
+		<?php
+			$term = get_queried_object();
+			if ( have_rows('resource_sections', $term) ) {
+				$resource_section_id = 0;
+				echo '<div class="tlex-card-grid">';
+				echo '<div class="row">';
+				while ( have_rows('resource_sections', $term) ) { 
+					the_row();
+					set_query_var( 'resource_section_id', $resource_section_id );
+					get_template_part( 'template-parts/tribe/resource', 'section'); 
+					$resource_section_id++;
+				}
+				echo '</div></div>';
+			}
+		?>
+		
+		<div class="tlex-card-grid">
 			<div class="row">
 			<?php if ( have_posts() ) : ?>
 				<?php
@@ -33,7 +49,7 @@ get_header();
 					* If you want to override this in a child theme, then include a file
 					* called content-___.php (where ___ is the Post Type name) and that will be used instead.
 					*/
-					get_template_part( 'template-parts/content', get_post_type() );
+					get_template_part( 'template-parts/content', 'teaser' );
 
 				endwhile;
 
@@ -46,6 +62,10 @@ get_header();
 			</div>
 		</div>
 		</main><!-- #main -->
+
+		<?php 
+			get_sidebar();
+		?>
 	</div><!-- #primary -->
 
 <?php

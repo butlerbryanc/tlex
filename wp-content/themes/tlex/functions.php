@@ -207,6 +207,11 @@ require get_template_directory() . '/inc/cpt/default/tlex-default-post.php';
  */
 require get_template_directory() . '/inc/cpt/taxonomies/state.php';
 
+/**
+ * Register Custom Admin Styles
+ */
+require get_template_directory() . '/inc/admin-styles.php';
+
 
 
 /**

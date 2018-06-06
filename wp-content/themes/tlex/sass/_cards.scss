@@ -35,13 +35,15 @@
     height: 100%;
     position: relative;
     transition: background-size 0.4s ease-in-out, background-position 0.4s ease-in-out;
+    padding: 15px;
 
-    .single & {
-        padding: 15px;
-    }
-    
-    .archive & {
-        min-height: 350px;
+    &.post {
+        padding: 0;
+        border: 2px solid transparent;
+
+        &:hover {
+            border: 2px solid $color-primary;
+        }
     }
 
     ul {
@@ -49,10 +51,9 @@
     }
 
     header {
-        background: linear-gradient(90deg, rgba($color-primary, 0.6) 0%, rgba($color-tertiary, 0.7) 100%, rgba($color-tertiary, 0.9) 100%);
+        // background: linear-gradient(90deg, rgba($color-primary, 0.6) 0%, rgba($color-tertiary, 0.7) 100%, rgba($color-tertiary, 0.9) 100%);
+        background: rgba(0, 0, 0, 0.2);
         padding: 15px;
-        position: absolute;
-        bottom: 0;
         width: 100%;
 
         h2 {
@@ -86,10 +87,5 @@
         a {
             color: #fff;
         }
-    }
-
-    &:hover {
-        background-position: center 55%;
-        background-size: 110%;
     }
 }

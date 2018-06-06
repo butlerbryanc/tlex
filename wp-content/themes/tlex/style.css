@@ -5745,21 +5745,21 @@ img {
   height: 100%;
   position: relative;
   transition: background-size 0.4s ease-in-out, background-position 0.4s ease-in-out;
-}
-.single .tlex-card {
   padding: 15px;
 }
-.archive .tlex-card {
-  min-height: 350px;
+.tlex-card.post {
+  padding: 0;
+  border: 2px solid transparent;
+}
+.tlex-card.post:hover {
+  border: 2px solid #3db3a8;
 }
 .tlex-card ul {
   padding-left: 1.1rem;
 }
 .tlex-card header {
-  background: linear-gradient(90deg, rgba(61, 179, 168, 0.6) 0%, rgba(83, 103, 101, 0.7) 100%, rgba(83, 103, 101, 0.9) 100%);
+  background: rgba(0, 0, 0, 0.2);
   padding: 15px;
-  position: absolute;
-  bottom: 0;
   width: 100%;
 }
 .tlex-card header h2 {
@@ -5787,10 +5787,6 @@ img {
 }
 .tlex-card header a {
   color: #fff;
-}
-.tlex-card:hover {
-  background-position: center 55%;
-  background-size: 110%;
 }
 section {
   background-color: #fff;
@@ -5842,21 +5838,21 @@ section {
   clear: both;
   content: "";
 }
-.single #secondary {
+.single #secondary, .archive #secondary {
   margin: 30px 0;
   width: 100%;
 }
 @media (min-width: 768px) {
-  .single #secondary {
+  .single #secondary, .archive #secondary {
     float: left;
     width: calc(30% - 30px);
   }
 }
-.single #main {
+.single #main, .archive #main {
   width: 100%;
 }
 @media (min-width: 768px) {
-  .single #main {
+  .single #main, .archive #main {
     float: right;
     width: 70%;
   }

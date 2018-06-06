@@ -42,7 +42,7 @@ section {
 }
 
 #secondary {
-    .single & {
+    .single &, .archive & {
         margin: 30px 0;
         width: 100%;
 
@@ -54,7 +54,7 @@ section {
 }
 
  #main {
-    .single & {
+    .single &, .archive & {
         width: 100%;
 
         @include media-breakpoint-up(md) {
