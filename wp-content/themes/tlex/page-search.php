@@ -21,8 +21,9 @@ get_header();
             <div id="state-search-wrapper" class="container">
                 <?php get_template_part( 'template-parts/search', 'svg'); ?>
                 <div id="state-info">
-                    <h2>Tribes by State</h2>
-                    <div id="states-container">
+                    <div id="ajax-state">
+                        <h2>Select a State</h2>
+                        <h5>to see more state specific information</h5>
                     </div>
                 </div>
                 <div id="state-tooltip" class="tooltip"></div>

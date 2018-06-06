@@ -37,7 +37,7 @@
         },
         success : function( response ) {
           console.log(response);
-          $('#states-container').html(response);
+          $('#ajax-state').html(response);
         }
       });
     });
