@@ -5718,12 +5718,12 @@ img {
 }
 @media (min-width: 576px) {
   .tlex-card-grid {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 }
 .tlex-card-grid div[class^="col"] {
-  margin-bottom: 30px;
+  margin-top: 30px;
 }
 .tlex-card-grid h3 {
   font-size: 1.2rem;
@@ -5757,36 +5757,31 @@ img {
 .tlex-card ul {
   padding-left: 1.1rem;
 }
-.tlex-card header {
-  background: rgba(0, 0, 0, 0.2);
-  padding: 15px;
+.tlex-card .tribe-teaser {
+  padding: 15px 0 0;
   width: 100%;
 }
-.tlex-card header h2 {
-  display: block;
-  font-size: 1.4rem;
-  font-weight: 400;
-  width: 100%;
+.tlex-card .tribe-teaser div[class^="col"] {
+  margin-top: 0;
+  margin-bottom: 0;
 }
-.tlex-card header h2 a {
-  font-weight: 400;
-  letter-spacing: 0.08em;
+.tlex-card .tribe-teaser img {
+  height: auto;
 }
-.tlex-card header h5 {
-  display: inline;
-  font-size: 0.9rem;
-  text-transform: uppercase;
+.tlex-card .tribe-teaser p {
+  margin-bottom: 0;
 }
-.tlex-card header h5 a {
-  font-weight: 600;
-  letter-spacing: 0.04em;
+.tlex-card .tribe-teaser a {
+  font-size: 1.2rem;
 }
-.tlex-card header h5:not(:last-child):after {
-  color: #fff;
+.tlex-card .tribe-teaser span {
+  color: #3db3a8;
+}
+.tlex-card .tribe-teaser span:not(:last-child):after {
   content: " \2022   ";
 }
-.tlex-card header a {
-  color: #fff;
+.tlex-card .tribe-teaser span a {
+  font-size: 0.8rem;
 }
 section {
   background-color: #fff;
@@ -5832,6 +5827,7 @@ section {
   display: block;
   margin: 0 auto;
   min-height: 100%;
+  padding-bottom: 30px;
 }
 #primary::after {
   display: block;

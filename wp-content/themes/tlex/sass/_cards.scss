@@ -3,12 +3,12 @@
     padding-bottom: 30px;
 
     @include media-breakpoint-up(sm) {
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 0px;
+        padding-bottom: 0px;
     }
 
     div[class^="col"] {
-        margin-bottom: 30px;
+        margin-top: 30px;
     }
 
     h3 {
@@ -50,42 +50,36 @@
         padding-left: 1.1rem;
     }
 
-    header {
-        // background: linear-gradient(90deg, rgba($color-primary, 0.6) 0%, rgba($color-tertiary, 0.7) 100%, rgba($color-tertiary, 0.9) 100%);
-        background: rgba(0, 0, 0, 0.2);
-        padding: 15px;
+    .tribe-teaser {
+        padding: 15px 0 0;
         width: 100%;
 
-        h2 {
-            display: block;
-            font-size: 1.4rem;
-            font-weight: 400;
-            width: 100%;
-
-            a {
-                font-weight: 400;
-                letter-spacing: 0.08em;
-            }
+        div[class^="col"] {
+            margin-top: 0;
+            margin-bottom: 0;
         }
 
-        h5 {
-            display: inline;
-            font-size: 0.9rem;
-            text-transform: uppercase;
+        img {
+            height: auto;
+        }
 
-            a {
-                font-weight: 600;
-                letter-spacing: 0.04em;
-            }
-
-            &:not(:last-child):after {
-                color: #fff;
-                content: " \2022   ";
-            }
+        p {
+            margin-bottom: 0;
         }
 
         a {
-            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        span {
+            color: $color-primary;
+            &:not(:last-child):after {
+                content: " \2022   ";
+            }
+
+            a {
+                font-size: 0.8rem;
+            }
         }
     }
 }

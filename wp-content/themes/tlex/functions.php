@@ -154,9 +154,14 @@ function tlex_scripts() {
     wp_enqueue_script( 'state-search', get_template_directory_uri() . '/js/state-search.js', array(), false, true);
     // wp_enqueue_script( 'mobirise', get_template_directory_uri() . '/vendor/theme/js/script.js', array(), false, true);
 
+    if( is_page_template('page-search.php')) {
+        wp_enqueue_script( 'state-search', get_template_directory_uri() . '/js/state-search.js', array(), false, true);
+        wp_localize_script( 'state-search', 'tlex',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+    }
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
-	}
+    }
 }
 add_action( 'wp_enqueue_scripts', 'tlex_scripts' );
 
@@ -211,6 +216,11 @@ require get_template_directory() . '/inc/cpt/taxonomies/state.php';
  * Register Custom Admin Styles
  */
 require get_template_directory() . '/inc/admin-styles.php';
+
+/**
+ * Register AJAX Functions
+ */
+require get_template_directory() . '/inc/tlex-ajax.php';
 
 
 

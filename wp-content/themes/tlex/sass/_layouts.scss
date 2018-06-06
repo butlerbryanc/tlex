@@ -38,6 +38,7 @@ section {
     display: block;
     margin: 0 auto;
     min-height: 100%;
+    padding-bottom: 30px;
     @include clearfix();
 }
 
