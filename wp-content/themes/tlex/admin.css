@@ -1,0 +1,33 @@
+.acf-fields.-left > .acf-field:before { 
+    border: 0px !important;
+    background: #fff !important;
+}
+
+.acf-fields.-left > .acf-field > .acf-input {
+    float: left;
+    width: 100% !important;
+    margin: 0;
+    padding: 0 12px;
+}
+
+.acf-link.-value .link-wrap {
+    display: block !important;
+}
+
+
+/* State ACF Style Overrides */
+#edittag .acf-fields.-left > .acf-field {
+    padding: 15px !important;
+}
+
+#edittag .acf-fields.-left > .acf-field > .acf-label {
+    width: 220px;
+    margin-left: 0 !important;
+    padding: 0 !important;
+}
+
+.acf-fields.-left > .acf-field > .acf-label {
+    float: none !important;
+    padding: 0 !important;
+    width: auto !important;
+}

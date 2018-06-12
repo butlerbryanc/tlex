@@ -165,6 +165,11 @@ function tlex_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'tlex_scripts' );
 
+function tlex_admin_style() {
+    wp_enqueue_style('admin-styles', get_template_directory_uri().'/admin.css');
+  }
+  add_action('admin_enqueue_scripts', 'tlex_admin_style');
+
 /**
  * Implement the Custom Header feature.
  */

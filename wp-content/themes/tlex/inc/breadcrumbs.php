@@ -25,6 +25,7 @@ function the_breadcrumb() {
 		echo '<i class="fas fa-home"></i>';
 		echo "</a></li>";
 		if (is_archive() || is_single()) {
+			echo '<li><a href="/search">States</a></li>';
 			the_taxonomy();
 			if (is_single()) {
 				echo "</li><li><a href='". get_the_permalink() ."'>";
