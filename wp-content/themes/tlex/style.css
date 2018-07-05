@@ -5846,6 +5846,12 @@ section {
     width: 70%;
   }
 }
+#content {
+  min-height: 70%;
+  min-height: -webkit-calc(100vh - 408px);
+  min-height: -moz-calc(100vh - 408px);
+  min-height: calc(100vh - 408px);
+}
 .breadcrumb-wrapper {
   display: none;
   background-color: #b3836d;

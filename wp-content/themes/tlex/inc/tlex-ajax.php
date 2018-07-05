@@ -1,7 +1,7 @@
 <?php
 
 add_action( 'wp_ajax_tlex_state_search', 'tlex_state_search' );
-add_action( 'wp_ajax_no_priv_tlex_state_search', 'tlex_state_search' );
+add_action( 'wp_ajax_nopriv_tlex_state_search', 'tlex_state_search' );
 
 
 function tlex_ajax_get_resource_links() {

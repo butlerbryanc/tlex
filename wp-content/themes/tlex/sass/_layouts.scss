@@ -55,7 +55,7 @@ section {
     }
 }
 
- #main {
+#main {
     .single &, .archive & {
         width: 100%;
 
@@ -64,4 +64,11 @@ section {
             width: 70%;
         }
     }
+}
+
+#content {
+    min-height: 70%;
+    min-height: -webkit-calc(100vh - 408px);
+    min-height: -moz-calc(100vh - 408px);
+    min-height: calc(100vh - 408px);
 }

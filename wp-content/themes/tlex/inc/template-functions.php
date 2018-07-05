@@ -55,7 +55,8 @@ function tlex_get_subregion_links($cat) {
 	$args = array(
 		'parent' => $cat->term_id, 
 		'taxonomy' => 'state',
-		'orderby' => 'title' 
+		'orderby' => 'title',
+		'number' => 0 
 	);
 	$sidebar_array = get_terms( $args );
 	$output .= '<ul>';
@@ -74,6 +75,8 @@ function tlex_get_tribe_links($cat) {
 
 	$args = array(
 		'orderby' => 'title',
+		'order' => 'ASC',
+		'posts_per_page' => -1,
 		'tax_query' => array(array(
 			'taxonomy' => $cat->taxonomy,
 			'field' => 'slug',
