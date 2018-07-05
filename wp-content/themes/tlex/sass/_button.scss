@@ -22,6 +22,23 @@
     @include button-outline-variant($value);
   }
 }
+
+.navigation {
+  @include clearfix();
+  .search & {
+    margin-top: 30px;
+  }
+}
+
+.align-left {
+  float: left;
+}
+
+.align-right {
+  float: right;
+}
+
+
   
   
   

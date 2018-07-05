@@ -35,6 +35,7 @@ get_header();
 				echo '</div></div>';
 			}
 		?>
+		
 		</main><!-- #main -->
 
 		<?php 

@@ -17,6 +17,7 @@ function the_taxonomy() {
 }
 
 function the_breadcrumb() {
+
 		echo '<ul class="breadcrumb">';
 	if (!is_home()) {
 		echo '<li><a href="';
@@ -36,6 +37,11 @@ function the_breadcrumb() {
 			echo '<li>';
 			echo the_title();
 			echo '</li>';
+		} elseif (is_search()) {
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			echo '<li><a href="#">';
+			echo 'Search: Page ' . $paged;
+			echo '</a></li>';
 		}
 	}
 	elseif (is_tag()) {single_tag_title();}

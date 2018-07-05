@@ -1,18 +1,25 @@
 <?php
 /**
- * The template for displaying search results pages
+ * The template for displaying search results page
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package TLEX
  */
 
 get_header();
 ?>
+	<?php get_template_part( 'template-parts/jumbotron'); ?>
 
-	<section id="primary" class="content-area">
+	<div class="breadcrumb-wrapper">
+		<div class="container">
+			<?php the_breadcrumb(); ?>
+		</div>
+	</div>
+
+	<div id="primary" class="container content-area">
 		<main id="main" class="site-main">
-
+		
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
@@ -23,7 +30,7 @@ get_header();
 					?>
 				</h1>
 			</header><!-- .page-header -->
-
+			<ul>
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) :
@@ -36,20 +43,31 @@ get_header();
 				 */
 				get_template_part( 'template-parts/content', 'search' );
 
-			endwhile;
+			endwhile; ?>
+			</ul>
 
-			the_posts_navigation();
+			<div class="navigation">
+				<?php if( get_previous_posts_link() ): ?>
+					<div class="align-left"><?php previous_posts_link( '&laquo; Prev' ); ?></div>
+				<?php endif; ?>
+				<?php if( get_next_posts_link() ): ?>
+					<div class="align-right"><?php next_posts_link( 'Next &raquo;', '' ); ?></div>
+				<?php endif; ?>
+			</div>
 
-		else :
+		<?php else :
 
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif;
 		?>
-
+		
 		</main><!-- #main -->
-	</section><!-- #primary -->
+
+		<?php 
+			get_sidebar();
+		?>
+	</div><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

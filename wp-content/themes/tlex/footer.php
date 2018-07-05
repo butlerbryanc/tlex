@@ -50,7 +50,7 @@
 
 		<!--Second column-->
 		<div class="col-md-3">
-			<h5 class="text-uppercase font-weight-bold">Quick Links</h5>
+			<h5 class="text-uppercase">Quick Links</h5>
 			<?php wp_nav_menu( array(
 				'container'		 => false,
 				'theme_location' => 'footer',
@@ -62,7 +62,7 @@
 
 		<!--Third column-->
 		<div class="col-md-3 mx-auto">
-			<h5 class="text-uppercase font-weight-bold">Contact Us</h5>
+			<h5 class="text-uppercase">Contact Us</h5>
 			<ul class="list-unstyled">
 				<li>
 					<a target="_blank" href="https://www.google.com/maps/search/?api=1&query=<?php echo urlencode(wp_strip_all_tags( get_field('contact_us', 'option')['address'], true )); ?>">
