@@ -5,7 +5,11 @@
 
     if( is_single() || is_archive() ) {
         if( is_single() ) {
-            $thumb_id = get_post_thumbnail_id();
+            if(has_post_thumbnail($post)) {
+                $thumb_id = get_post_thumbnail_id();
+            } else {
+                $thumb_id = get_field('category_image', wp_get_post_terms($post->ID, 'state')[0])['ID'];
+            }
             $title = get_the_title($post->ID);
         } else {
             $object = get_queried_object();
